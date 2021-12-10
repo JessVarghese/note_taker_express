@@ -1,32 +1,38 @@
 
-const path = require('path');
 const fs = require('fs');
-
+const path = require('path');
+const uuid = require('uuid');
 const router = require('express').Router();
 
 
 
-router.get('/notes', (req, res) => {
 
-  const data = fs.readFileSync("./db/db.json");
-  res.json(JSON.parse(data));
+//GET request
+router.get('/api/notes', (req, res) => {
+
+  const notes = fs.readFileSync("./db/db.json");
+  res.json(JSON.parse(notes));
 
 })
 
 
+//POST request
 
-router.post('/notes', (req, res) => {
+router.post('/api/notes', (req, res) => {
  
   const notes = fs.readFileSync("./db/db.json");
-  const createNewNote = req.body;
-  // notes.push(createNewNote)
+  const createNote = req.body;
+  createNote.id = uuid.v4();
+  notes.push(createNote);
+  fs.writeFileSync("./db/db.json", JSON.stringify(notes));
   res.json(JSON.parse(notes));
 
   })
 
 
-  router.delete('/notes:id', (req, res) => {
-  
+  //BONUS - DELETE REQUEST
+  router.delete('/api/notes:id', (req, res) => {
+ 
   const notes = JSON.parse(fs.readFileSync("./db/db.json"));
   const deleteNote = req.body;
   fs.writeFileSync("./db/db.json"), JSON.stringify(notes);
