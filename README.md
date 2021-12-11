@@ -14,7 +14,6 @@
   * [Usage](#usage)
   * [License](#license)
   * [Contributions](#contributing)
-  * [Tests](#tests)
   * [Questions](#questions)
  
 
@@ -23,7 +22,6 @@
   npm i express , npm install uuid
  
   ## Usage
-  NA
   
   
  ![visuals](/assets/nte_homepage.png)
@@ -35,8 +33,6 @@
   ## Contributing
   Open to suggestions on new features
 
-  ## Tests
-  na
 
   ## Questions
   If you have any questions about the repo, open and issue or contact me directly:
