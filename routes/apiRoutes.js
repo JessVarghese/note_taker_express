@@ -22,13 +22,14 @@ router.get('/api/notes', (req, res) => {
 router.post('/api/notes', (req, res) => {
  
   const notes = JSON.parse(fs.readFileSync("./db/db.json"));
-  createNote.id = uuid.v4();
+ 
   const createNote = req.body;
+  createNote.id = uuid.v4();
   notes.push(createNote);
   fs.writeFileSync("./db/db.json", JSON.stringify(notes));
   res.json(JSON.parse(notes));
-
-  })
+ 
+   })
 
 
   //BONUS - DELETE REQUEST
