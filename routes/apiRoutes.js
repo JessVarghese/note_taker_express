@@ -1,8 +1,9 @@
 
+const router = require('express').Router();
 const fs = require('fs');
 const path = require('path');
 const uuid = require('uuid');
-const router = require('express').Router();
+
 
 
 
@@ -16,13 +17,13 @@ router.get('/api/notes', (req, res) => {
 })
 
 
-//POST request
+//POST REQUEST
 
 router.post('/api/notes', (req, res) => {
  
-  const notes = fs.readFileSync("./db/db.json");
-  const createNote = req.body;
+  const notes = JSON.parse(fs.readFileSync("./db/db.json"));
   createNote.id = uuid.v4();
+  const createNote = req.body;
   notes.push(createNote);
   fs.writeFileSync("./db/db.json", JSON.stringify(notes));
   res.json(JSON.parse(notes));
